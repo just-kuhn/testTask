@@ -1,0 +1,68 @@
+<div class="container">
+
+  <div class="row">
+    <div class="text-center">
+      <!-- Button trigger modal -->
+      <button type="button" class="box btn btn-primary btn-lg" data-toggle="modal" data-target="#mynewpage">
+        New page
+      </button>
+    </div>
+  </div>
+
+  <br>
+  <hr>
+
+  <div class="row" id="container_pages">
+    <div class="col-sm-9">
+      <h2 class="text-center">Pages</h2>
+      <%= render @pages %>
+    </div>
+
+    <div class="col-sm-3">
+      <h3>Categories</h3>
+      <%= render @categories %>
+      <%= link_to "Add new category", new_category_path %>
+    </h3>
+  </div>
+
+
+
+
+  <!-- Modal  create action -->
+  <%= form_for(@page, remote: true) do |f| %>
+  <div class="modal fade" id="mynewpage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">page</h4>
+        </div>
+
+        <div class="modal-body">
+          <div class="field">
+            <%= f.label :title %><br>
+            <%= f.text_area :title, class: "form-control page_title" %>
+          </div>
+          <div class="field">
+            <%= f.label :content %><br>
+            <%= f.text_area :content, class: "form-control page_content" %>
+          </div>
+          <div class="field">
+            <%= f.label :category %><br>
+            <%= f.select :category_ids, Category.all.collect {|x| [x.name, x.id]}, {}, {:multiple=> true} %>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" id="mynewpageclose">Close</button>
+            <%= submit_tag "Create", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+    <!-- Modal -->
+
+
+  </div>
+</div>
