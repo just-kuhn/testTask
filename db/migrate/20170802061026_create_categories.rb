@@ -5,7 +5,6 @@ class CreateCategories < ActiveRecord::Migration[5.0]
 
       t.timestamps  
     end
-
-
+    Category.create(name: "no-category")
   end
 end
