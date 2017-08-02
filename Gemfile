@@ -44,6 +44,8 @@ gem 'simple_form'
 #authentication gem
 gem 'devise'
 
+gem 'friendly_id', '~> 5.1.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

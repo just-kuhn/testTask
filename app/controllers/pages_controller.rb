@@ -9,6 +9,7 @@ class PagesController < ApplicationController
     @pages = Page.all
     @page = Page.new
     @category_pages = @page.categories.all
+
   end
 
   # GET /pages/1
@@ -70,11 +71,11 @@ class PagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page
-      @page = Page.find(params[:id])
+      @page = Page.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:title, :content, :category_ids => [])
+      params.require(:page).permit(:title, :content, :slug, :category_ids => [])
     end
 end
