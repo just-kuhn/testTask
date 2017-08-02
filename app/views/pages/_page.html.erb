@@ -4,35 +4,34 @@
 
     <div class="panel-heading">
       <h3 class="panel-title">
-         <%= link_to category_page_path(page.category_ids.first, page) do %>
-        <%= page.title %>
-        <% end %>
-      </h3>
-      <div style="color: #3BB2D6;"><%= time_ago_in_words(page.created_at) %></div>
+       <%= link_to category_page_path(page.category_ids.first, page) do %>
+       <%= page.title %>
+       <% end %>
+     </h3>
+     <div style="color: #3BB2D6;"><%= time_ago_in_words(page.created_at) %></div>
+   </div>
+
+   <div class="panel-body"><!-- Panel Body -->
+
+    <p><%= truncate(page.content, length: 20, separator: ' ') %></p>
+    <br>
+    Categories:
+    <% page.categories.each do |category| %>
+    <%= category.name %>
+
+    <div class="btn-group" role="group" aria-label="...">
+      <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepage_<%= page.id %>">
+        Edit
+      </button>
+      <%= link_to 'Destroy', category_page_path(page.category_ids.first, page), method: :delete, class: "btn btn-danger" %>
     </div>
-
-    <div class="panel-body"><!-- Panel Body -->
-
-      <p><%= truncate(page.content, length: 20, separator: ' ') %></p>
-      <br>
-      Categories:
-      <% page.categories.each do |category| %>
-      <%= category.name %>
-      
-      <div class="btn-group" role="group" aria-label="...">
-        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepage_<%= page.id %>">
-          Edit
-        </button>
-        <%= link_to 'Destroy', category_page_path(@page.category_ids.first, page), method: :delete, class: "btn btn-danger", remote: true %>
-      </div>
-    </div><!-- Panel Body -->
-    <% end %> 
-  </div><!-- Panel Info -->
+  </div><!-- Panel Body -->
+  <% end %> 
+</div><!-- Panel Info -->
 
 
-  <!-- Modal - update pages -->
-  <%= form_for(page, url: category_page_path(page.category_ids.first, page), :method => :put, remote: true) do |f| %>
-   <div class="modal fade" id="myupdatepage_<%= page.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- Modal - update pages -->
+<%= form_for(page, url: category_page_path(page.category_ids.first, page), :method => :put, remote: true) do |f| %>
   <div class="modal fade" id="myupdatepage_<%= page.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -61,6 +60,5 @@
   </div>
   <% end %>
   <!-- Modal -->
-</div>
-
+  
 </div>

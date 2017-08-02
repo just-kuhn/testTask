@@ -18,17 +18,17 @@
       Categories:
       <% page.categories.each do |category| %>
       <%= category.name %>
-      <% end %>  
+      
       <br> 
 
       <div class="btn-group" role="group" aria-label="...">
         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepage_<%= page.id %>">
           Edit
         </button>
-        <%= link_to 'Destroy', page, method: :delete, class: "btn btn-danger", remote: true %>
+        <%= link_to 'Destroy', page, method: :delete, class: "btn btn-danger" %>
       </div>
     </div><!-- Panel Body -->
-
+    <% end %>  
   </div><!-- Panel Info -->
 
 
