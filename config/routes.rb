@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :categories 
-
-  resources :pages, path: ''
+    resources :categories do
+    resources :pages, path: ""
+ end
   root "pages#index"
 
   

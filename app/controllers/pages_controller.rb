@@ -5,9 +5,9 @@ class PagesController < ApplicationController
   # GET /pages.json
   def index
     @categories = Category.all
-    @category = Category.new
+    @category = Category.find_by(name: "no-category")
     @pages = Page.all
-    @page = Page.new
+    @page = Page.new(categories: [Category.default])
     @category_pages = @page.categories.all
 
   end
@@ -35,8 +35,8 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       if @page.save
-        format.html { redirect_to @page, notice: 'Page was successfully created.' }
-        format.json { render :show, status: :created, location: @page }
+        format.html { redirect_to category_page_path(@page.categories.first.friendly_id, @page), notice: 'Page was successfully created.' }
+        format.json { render :show, status: :created, location: category_page_path(@page.categories.first.friendly_id, @page) }
       else
         format.html { render :new }
         format.json { render json: @page.errors, status: :unprocessable_entity }
@@ -49,8 +49,8 @@ class PagesController < ApplicationController
   def update
     respond_to do |format|
       if @page.update(page_params)
-        format.html { redirect_to @page, notice: 'Page was successfully updated.' }
-        format.json { render :show, status: :ok, location: @page }
+        format.html { redirect_to category_page_path(@page.categories.first.friendly_id, @page), notice: 'Page was successfully updated.' }
+        format.json { render :show, status: :created, location: category_page_path(@page.categories.first.friendly_id, @page) }
       else
         format.html { render :edit }
         format.json { render json: @page.errors, status: :unprocessable_entity }

@@ -10,6 +10,10 @@ class Category < ApplicationRecord
 		]
 end
 
+def self.default
+Category.find_by(name: 'no-category')
+end
+
 def should_generate_new_friendly_id?
     new_record?
 end 

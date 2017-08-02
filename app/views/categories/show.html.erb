@@ -6,7 +6,7 @@
 
 		<div class="panel-heading">
 			<h3 class="panel-title">
-				<%= link_to page_path(page) do %>
+				<%= link_to category_page_path(page.category_ids.first, page) do %>
 				<%= page.title %>
 				<% end %>
 			</h3>
@@ -19,7 +19,7 @@
 			<br>
 			Categories:
 			<% page.categories.each do |category| %>
-			 <%= category.name %>
+			<%= category.name %>
 			<% end %>  
 			<br>
 			<div class="btn-group" role="group" aria-label="...">
@@ -27,7 +27,7 @@
 					Edit
 
 				</button>
-				<%= link_to 'Destroy', page, method: :delete, class: "btn btn-danger", remote: true %>
+				<%= link_to 'Destroy', category_page_path(@page.category_ids.first, page), method: :delete, class: "btn btn-danger", remote: true %>
 			</div>
 		</div><!-- Panel Body -->
 
@@ -35,7 +35,7 @@
 
 
 	<!-- Modal - update pages -->
-	<%= form_for(page, :method => :put, remote: true) do |f| %>
+	<%= form_for(page, url: category_page_path(page.category_ids.first, page), :method => :put, remote: true) do |f| %>
 	<div class="modal fade" id="myupdatepage_<%= page.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">

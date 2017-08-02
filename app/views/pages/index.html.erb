@@ -29,7 +29,7 @@
 
 
   <!-- Modal  create action -->
-  <%= form_for(@page, remote: true) do |f| %>
+  <%= form_for(@page, url: category_pages_path(@page.categories.first, @page)) do |f| %>
   <div class="modal fade" id="mynewpage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
