@@ -23,16 +23,16 @@
         <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#myupdatepage_<%= page.id %>">
           Edit
         </button>
-        <%= link_to 'Destroy', category_page_path(page.category_ids.first, page), method: :delete, class: "btn btn-danger", remote: true %>
+        <%= link_to 'Destroy', category_page_path(@page.category_ids.first, page), method: :delete, class: "btn btn-danger", remote: true %>
       </div>
-      <% end %> 
     </div><!-- Panel Body -->
-
+    <% end %> 
   </div><!-- Panel Info -->
 
 
   <!-- Modal - update pages -->
-    <%= form_for(page, url: category_page_path(page.category_ids.first, page), :method => :put, remote: true) do |f| %>
+  <%= form_for(page, url: category_page_path(page.category_ids.first, page), :method => :put, remote: true) do |f| %>
+   <div class="modal fade" id="myupdatepage_<%= page.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal fade" id="myupdatepage_<%= page.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -61,6 +61,6 @@
   </div>
   <% end %>
   <!-- Modal -->
-
+</div>
 
 </div>

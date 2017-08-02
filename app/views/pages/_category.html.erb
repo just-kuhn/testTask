@@ -1,5 +1,5 @@
-<div class="col-sm-3" id="category_<%= category_.id %>">
-	<div class="container">
-		<%= category.name %>
-	</div>
+<div class="container" id="category_<%= category.id %>">
+	<%= link_to category_path(category) do %>
+		<p><%= category.name %></p>
+	<% end %>	
 </div>

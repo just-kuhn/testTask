@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
     resources :categories do
-    resources :pages, path: ""
+    resources :pages
  end
   root "pages#index"
 
